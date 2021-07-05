@@ -1,0 +1,45 @@
+.search-form {
+  text-align: center;
+  margin: 20px;
+  font-size: 15px;
+  padding: 10pxs;
+}
+
+input,
+.loade-more {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.gallery {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  column: column-reverse;
+}
+
+.gallery_item {
+  margin: 5px;
+}
+
+.stats {
+  display: flex;
+  font-size: 18px;
+}
+
+.material-icons {
+  vertical-align: center;
+  //   width: 10px;
+}
+
+// кнопка
+.button {
+  width: 250px;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 0;
+}
+
+.is-hidden {
+  display: none;
+}
