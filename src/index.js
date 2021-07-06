@@ -11,6 +11,10 @@ function showBtn() {
   refs.button.classList.remove('is-hidden');
 }
 
+function hiddenBtn() {
+  refs.button.classList.add('is-hidden');
+}
+
 const refs = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),
@@ -27,25 +31,27 @@ function onClickEnter(e) {
   if (!searchQuery) {
     return;
   }
-  if (searchQuery === beforeSearchQueryBefore) {
-    cleanGallery();
-  }
-  return fetchImages(searchQuery).then(data => renderImages(data.hits));
+  cleanGallery();
+  return fetchImages(searchQuery)
+    .then(data => renderImages(data.hits))
+    .catch(error => {
+      throw new Error(error);
+    });
 }
 
 function onClickBtn(e) {
-  setTimeout(() => {
-    refs.gallery.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
+  return fetchImages(beforeSearchQueryBefore)
+    .then(data => renderImages(data.hits))
+    .catch(error => {
+      throw new Error(error);
     });
-  }, 1000);
-
-  return fetchImages(beforeSearchQueryBefore).then(data => renderImages(data.hits));
 }
 
 function renderImages(data) {
-  showBtn();
-  console.log();
   refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data));
+  data.length === 12 ? showBtn() : hiddenBtn();
+  refs.gallery.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
 }
